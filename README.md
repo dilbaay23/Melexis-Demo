@@ -1,2 +1,0 @@
-# Melexis-Demo
-Melexis
