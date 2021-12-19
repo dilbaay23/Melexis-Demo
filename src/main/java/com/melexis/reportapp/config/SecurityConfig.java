@@ -1,7 +1,10 @@
 package com.melexis.reportapp.config;
 
 import com.melexis.reportapp.security.AudienceValidator;
+import com.melexis.reportapp.security.XSSFilter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,6 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers()
+                .xssProtection()
+                .and()
+                .contentSecurityPolicy("script-src 'self'");
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/machine/**").permitAll() // GET requests don't need auth
                 .anyRequest()
@@ -84,5 +91,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
         return jwtConverter;
+    }
+
+    @Bean
+    public FilterRegistrationBean xssPreventFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+
+        registrationBean.setFilter(new XSSFilter());
+        registrationBean.addUrlPatterns("/*");
+
+        return registrationBean;
     }
 }
