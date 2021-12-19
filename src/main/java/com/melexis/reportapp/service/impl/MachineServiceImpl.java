@@ -5,6 +5,7 @@ import com.melexis.reportapp.model.Machine;
 import com.melexis.reportapp.service.MachineService;
 import com.melexis.test.MachineType;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
  **/
 @AllArgsConstructor
 @Service
+@Slf4j
 public class MachineServiceImpl implements MachineService {
 
     private final MachineRepository machineRepository;

@@ -2,6 +2,7 @@ package com.melexis.reportapp.model;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -17,7 +18,8 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
-public class Error extends AbstractEntity {
+@EqualsAndHashCode
+public class Error {
 
     @Id
     private String id;

@@ -9,6 +9,7 @@ import com.melexis.reportapp.service.ErrorService;
 import com.melexis.reportapp.service.MachineEventService;
 import com.melexis.reportapp.service.MachineService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class MachineEventServiceImpl implements MachineEventService {
 
     private final ErrorService errorService;

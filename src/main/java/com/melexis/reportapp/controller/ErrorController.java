@@ -2,6 +2,7 @@ package com.melexis.reportapp.controller;
 
 import com.melexis.reportapp.model.Error;
 import com.melexis.reportapp.service.ErrorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.List;
  **/
 @RequestMapping("error")
 @RestController
+@Slf4j
 public class ErrorController {
 
     @Autowired

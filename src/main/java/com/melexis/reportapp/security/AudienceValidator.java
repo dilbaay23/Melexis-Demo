@@ -1,5 +1,6 @@
 package com.melexis.reportapp.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created By Moon
  * 19/12/2021, zo
  **/
-
+@Slf4j
 public class AudienceValidator implements OAuth2TokenValidator<Jwt> {
     private final String audience;
 

@@ -1,5 +1,6 @@
 package com.melexis.reportapp.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.owasp.esapi.ESAPI;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
  * 19/12/2021, zo
  **/
 
+@Slf4j
 public class XSSRequestWrapper extends HttpServletRequestWrapper {
 
     private static Pattern[] patterns = new Pattern[]

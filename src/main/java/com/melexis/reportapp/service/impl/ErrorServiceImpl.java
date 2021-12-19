@@ -4,6 +4,7 @@ import com.melexis.reportapp.dao.ErrorRepository;
 import com.melexis.reportapp.model.Error;
 import com.melexis.reportapp.service.ErrorService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @Service
+@Slf4j
 public class ErrorServiceImpl implements ErrorService {
 
     private final ErrorRepository errorRepository;

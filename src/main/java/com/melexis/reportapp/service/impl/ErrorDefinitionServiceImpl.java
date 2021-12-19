@@ -4,6 +4,7 @@ import com.melexis.reportapp.dao.ErrorDefinitionRepository;
 import com.melexis.reportapp.model.ErrorDefinition;
 import com.melexis.reportapp.service.ErrorDefinitionService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  **/
 @AllArgsConstructor
 @Service
+@Slf4j
 public class ErrorDefinitionServiceImpl implements ErrorDefinitionService {
 
     private final ErrorDefinitionRepository errorDefinitionRepository;

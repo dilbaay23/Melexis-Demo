@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.melexis.reportapp.dto.MachineEventDTO;
 import com.melexis.reportapp.service.MachineEventService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @AllArgsConstructor
+@Slf4j
 public class MachineEventListener {
 
     private final MachineEventService machineEventService;

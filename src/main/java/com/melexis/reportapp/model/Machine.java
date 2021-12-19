@@ -2,6 +2,7 @@ package com.melexis.reportapp.model;
 
 import com.melexis.test.MachineType;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,7 +14,8 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-public class Machine extends AbstractEntity {
+@EqualsAndHashCode
+public class Machine {
 
     @Id
     private String id;
