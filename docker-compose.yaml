@@ -1,0 +1,36 @@
+version: '3'
+services:
+  postgres-db:
+    image: timescale/timescaledb:latest-pg14
+    restart: always
+    container_name: postgres-db
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=AselDelf12
+      - POSTGRES_DB=melexis
+    networks:
+      - backend
+  activemq:
+    container_name: activemq
+    image: webcenter/activemq
+    restart: always
+    ports:
+      - 61616:61616
+      - 49167:1883
+      - 49166:5672
+      - 49165:8161
+      - 49164:61613
+      - 49163:61614
+    environment:
+      - ACTIVEMQ_CONFIG_MINMEMORY=512
+      - ACTIVEMQ_CONFIG_MAXMEMORY=2048
+    networks:
+      - backend
+
+
+networks:
+  frontend:
+    external: true
+  backend:
