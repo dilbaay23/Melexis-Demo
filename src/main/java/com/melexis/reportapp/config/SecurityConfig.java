@@ -4,7 +4,6 @@ import com.melexis.reportapp.security.AudienceValidator;
 import com.melexis.reportapp.security.XSSFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +28,7 @@ import java.util.List;
  **/
 
 
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -47,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .contentSecurityPolicy("script-src 'self'");
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/machine/**").permitAll() // GET requests don't need auth
+                .mvcMatchers(HttpMethod.GET, "/error/**").permitAll() // GET requests don't need auth
+                //               .mvcMatchers(HttpMethod.GET, "/errorDefinition/**").permitAll() // GET requests don't need auth
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -86,14 +87,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
         converter.setAuthoritiesClaimName("permissions");
-        converter.setAuthorityPrefix("");
+        // converter.setAuthorityPrefix("read");
 
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);
         return jwtConverter;
     }
 
-    @Bean
+    // @Bean
     public FilterRegistrationBean xssPreventFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 

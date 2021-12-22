@@ -4,10 +4,7 @@ import com.melexis.reportapp.model.ErrorDefinition;
 import com.melexis.reportapp.service.ErrorDefinitionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,11 +22,15 @@ public class ErrorDefinitionController {
 
     //TODO:
     @GetMapping("query")
-    @PreAuthorize("hasAuthority('read')")
+    //@PreAuthorize("hasAuthority('read')")
     public List<ErrorDefinition> query() {
 
-        return null;
+        return service.findAll();
     }
 
+    @PostMapping("/addErrorDefinition")
+    ErrorDefinition save(@RequestBody ErrorDefinition errorDefinition) {
+        return service.save(errorDefinition);
+    }
 
 }

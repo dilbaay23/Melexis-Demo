@@ -4,7 +4,6 @@ import com.melexis.reportapp.model.Error;
 import com.melexis.reportapp.service.ErrorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +24,7 @@ public class ErrorController {
 
 
     @GetMapping("listAll")
-    @PreAuthorize("hasAuthority('read')")
+   // @PreAuthorize("hasAuthority('read')")
     public List<Error> listAll() {
         return service.findAll();
     }

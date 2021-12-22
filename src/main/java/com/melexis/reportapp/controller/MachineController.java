@@ -4,10 +4,7 @@ import com.melexis.reportapp.model.Machine;
 import com.melexis.reportapp.service.MachineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +22,20 @@ public class MachineController {
     private MachineService service;
 
     @GetMapping("listAll")
-    @PreAuthorize("hasAuthority('read')")
+    //@PreAuthorize("hasAuthority('read')")
     public List<Machine> listAll() {
         return service.findAll();
     }
+
+    @PostMapping("addMachine")
+    Machine save(@RequestBody Machine machine) {
+        return service.save(machine);
+    }
+
+    @GetMapping("/listAll/{id}")
+    public Machine get(@PathVariable("id") String id) {
+        return service.findById(id).orElseGet(null);
+    }
+
+
 }
