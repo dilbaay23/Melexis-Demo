@@ -4,6 +4,8 @@ package com.melexis.reportapp.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,6 +32,7 @@ public class Error {
     private ErrorDefinition errorDefinition;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Machine machine;
 
     @Column

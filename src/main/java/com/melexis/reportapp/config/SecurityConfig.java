@@ -28,7 +28,7 @@ import java.util.List;
  **/
 
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity()
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -45,9 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .contentSecurityPolicy("script-src 'self'");
         http.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/machine/**").permitAll() // GET requests don't need auth
-                .mvcMatchers(HttpMethod.GET, "/error/**").permitAll() // GET requests don't need auth
-                //               .mvcMatchers(HttpMethod.GET, "/errorDefinition/**").permitAll() // GET requests don't need auth
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -87,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
         converter.setAuthoritiesClaimName("permissions");
-        // converter.setAuthorityPrefix("read");
+        converter.setAuthorityPrefix("");
 
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
         jwtConverter.setJwtGrantedAuthoritiesConverter(converter);

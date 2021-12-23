@@ -1,6 +1,8 @@
 package com.melexis.reportapp.service.impl;
 
+
 import com.melexis.reportapp.dao.ErrorRepository;
+import com.melexis.reportapp.dto.ErrorQueryDTO;
 import com.melexis.reportapp.model.Error;
 import com.melexis.reportapp.service.ErrorService;
 import lombok.AllArgsConstructor;
@@ -8,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -56,6 +59,16 @@ public class ErrorServiceImpl implements ErrorService {
     @Override
     public List<Error> findAll() {
         return errorRepository.findAll();
+    }
+
+    @Override
+    public List<Error> query(ErrorQueryDTO errorQueryDTO) {
+        String machineId = errorQueryDTO.getMachineId();
+        Integer errorCode = errorQueryDTO.getErrorCode();
+
+        LocalDateTime start = errorQueryDTO.getStartDate();
+        LocalDateTime end = errorQueryDTO.getEndDate();
+        return errorRepository.findAllByMachineAndErrorDefinitionAndBetweenDates(machineId, errorCode, start, end);
     }
 
 

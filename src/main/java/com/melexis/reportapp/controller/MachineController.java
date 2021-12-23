@@ -4,6 +4,8 @@ import com.melexis.reportapp.model.Machine;
 import com.melexis.reportapp.service.MachineService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +34,20 @@ public class MachineController {
         return service.save(machine);
     }
 
-    @GetMapping("/listAll/{id}")
+    @GetMapping("{id}")
     public Machine get(@PathVariable("id") String id) {
         return service.findById(id).orElseGet(null);
     }
 
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id") String id) {
+        try {
+            service.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.melexis.reportapp.service;
 
+import com.melexis.reportapp.dto.ErrorQueryDTO;
 import com.melexis.reportapp.model.Error;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,5 @@ public interface ErrorService {
 
     List<Error> findAll();
 
+    List<Error> query(ErrorQueryDTO errorQueryDTO);
 }

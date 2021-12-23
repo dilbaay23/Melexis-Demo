@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -55,7 +56,10 @@ public class ErrorDefinitionServiceImpl implements ErrorDefinitionService {
 
     @Override
     public List<ErrorDefinition> findAll() {
-        return errorDefinitionRepository.findAll();
+        List<ErrorDefinition> list = errorDefinitionRepository.findAll();
+        Collections.sort(list,
+                (o1, o2) -> o1.getErrorCode().compareTo(o2.getErrorCode()));
+        return list;
     }
 
     @Override

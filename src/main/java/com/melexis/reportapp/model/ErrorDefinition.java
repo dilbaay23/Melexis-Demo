@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class ErrorDefinition {
 
     @Id
-    private int errorCode;
+    private Integer errorCode;
 
     @Column
     private String errorDetail;
