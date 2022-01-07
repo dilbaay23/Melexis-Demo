@@ -23,7 +23,8 @@ to [http://localhost:8080/api/swagger-ui/index.html#/]
 
 Persistence store: Postgresql  
 Backend : Java- Springboot : The back-end server uses Spring Boot with Spring Web MVC for REST Controller and Spring
-Data JPA,Hibernate ORM for interacting with PostgreSQL database Frontend : Angular : Consume REST APIs that are exposed
+Data JPA,Hibernate ORM for interacting with PostgreSQL database 
+Frontend : Angular : Consume REST APIs that are exposed
 by Spring boot REST APIs, shows data on the components.
 
 To start the default docker-compose configuration, run:
