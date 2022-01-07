@@ -24,6 +24,7 @@ public class ReportController {
 
     @PostMapping("/query")
     public List<Error> query(@RequestBody ErrorQueryDTO queryDTO) {
+
         return errorService.query(queryDTO);
     }
 }
